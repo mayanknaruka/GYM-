@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayank GYM </title>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Balsamiq+Sans&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+    /* css reset */
+
+    body {
+        font-family: 'Baloo 2', cursive;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        background: url('images/bg.jpg');
+    }
+
+    .left {
+        display: inline-block;
+        /* border: 2px solid red; */
+        position: absolute;
+        left: 60px;
+        top: 20px;
+    }
+
+    .left img {
+        width: 100px;
+
+    }
+
+    .left div {
+        text-align: center;
+        line-height: 18px;
+        font-size: 24px;
+    }
+
+    .mid {
+        display: block;
+        width: 36%;
+        margin: 28px auto;
+        /* border: 2px solid green; */
+
+    }
+
+    .right {
+        display: inline-block;
+        position: absolute;
+        right: 34px;
+        top: 43px;
+        /* border: 2px solid yellow; */
+    }
+
+    .navbar {
+        display: inline-block;
+    }
+
+    .navbar li {
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    .navbar li a {
+        color: white;
+        text-decoration: none;
+        padding: 34px 23px;
+    }
+
+    .navbar li a:hover,
+    .navbar li a.active {
+        text-decoration: underline;
+        color: grey;
+    }
+
+    .btn {
+        font-family: 'Baloo 2', cursive;
+        margin: 0px 9px;
+        background-color: black;
+        color: white;
+        padding: 4px 14px;
+        border-radius: 10px;
+        border: 2px solid grey;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: rgb(31, 30, 30);
+    }
+    .container {
+        border: 2px solid white;
+        margin: 106px 80px;
+        padding: 25px;
+        width: 33%;
+        border-radius: 28px;
+    }
+    .form-group input {
+        font-family: 'Baloo 2', cursive;
+        text-align: center;
+        display: block;
+        width: 508px;
+        padding: 1px;
+        border: 2px solid black;
+        margin: 11px auto;
+        font-size: 25px;
+        border-radius: 8px;
+    }
+    .container h1{
+        text-align: center;
+    }
+    .container button{
+        border: 2px solid black;
+        font-family: 'Baloo 2', cursive;
+        display: block;
+        width: 75%;
+        margin: 20px auto;
+        padding: 5px;
+        border-radius: 8px;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <header class="header">
+        <!-- left box for logo -->
+        <div class="left">
+            <img src="images/logo.jpg" alt="">
+            <div>Mayank GYM</div>
+
+        </div>
+        <!-- mid box for navbar -->
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Fitness calculator</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </div>
+        <!-- right box for buttons -->
+        <div class="right">
+            <button class="btn">Call us now </button>
+            <button class="btn">Email us</button>
+        </div>
+    </header>
+    <div class="container">
+       <h1>Join the best gym of jaipur now</h1>
+       <form action="myaction.php"></form>
+
+       <form id="userForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your Age" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" placeholder="Enter your Gender" required>
+        </div>
+        <div class="form-group">
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality" placeholder="Enter your Locality" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email ID" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="number" id="phone" name="phone" placeholder="Enter your Phone Number" required>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="validateForm()">Submit</button>
+        </div>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            if (!/^[A-Za-z\s]+$/.test(name)) {
+                alert("Name must contain only alphabetic characters and spaces.");
+                return;
+            }
+
+            if (age < 0 || age > 100) {
+                alert("Age must be between 0 and 100.");
+                return;
+            }
+
+            if (gender !== "male" && gender !== "female") {
+                alert("Gender must be 'male' or 'female'.");
+                return;
+            }
+
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (!/^\d{10}$/.test(phone) || /(.)\1\1\1\1/.test(phone)) {
+                alert("Phone number must be 10 digits, and no number should repeat 5 times.");
+                return;
+            }
+
+            const userData = {
+                name: name,
+                age: age,
+                gender: gender,
+                locality: document.getElementById("locality").value,
+                email: email,
+                phone: phone
+            };
+
+            document.getElementById("result").innerHTML = "<h2>Collected User Information:</h2><pre>" + JSON.stringify(userData, null, 2) + "</pre>";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<body>
+    <form id="userForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your Age" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" placeholder="Enter your Gender" required>
+        </div>
+        <div class="form-group">
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality" placeholder="Enter your Locality" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email ID" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your Phone Number" required>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="validateForm()">Submit</button>
+        </div>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const gender = document.getElementById("gender").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            if (!/^[A-Za-z\s]+$/.test(name)) {
+                alert("Name must contain only alphabetic characters and spaces.");
+                return;
+            }
+
+            if (age < 0 || age > 100) {
+                alert("Age must be between 0 and 100.");
+                return;
+            }
+
+            if (!/^[A-Za-z\s]+$/.test(gender)) {
+                alert("Gender must contain only alphabetic characters and spaces.");
+                return;
+            }
+
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            if (!/^\d{10}$/.test(phone) || /(.)\1\1\1\1/.test(phone)) {
+                alert("Phone number must be 10 digits, and no number should repeat 5 times.");
+                return;
+            }
+
+            const userData = {
+                name: name,
+                age: age,
+                gender: gender,
+                locality: document.getElementById("locality").value,
+                email: email,
+                phone: phone
+            };
+
+            document.getElementById("result").innerHTML = "<h2>Collected User Information:</h2><pre>" + JSON.stringify(userData, null, 2) + "</pre>";
+        }
+    </script>
+</body>
+</html>
